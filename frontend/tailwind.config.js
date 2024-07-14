@@ -13,7 +13,7 @@ export default {
           custom: '#121933',
           head: '#B6FFFA'
         },
+      }
     },
-  },
   plugins: [],
-}
+};
