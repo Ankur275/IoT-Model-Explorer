@@ -24,8 +24,19 @@ import Card1 from "../Images/card1.jpg";
 import Card2 from "../Images/ultimate Quantum Microchip Tech.jpg";
 import Card3 from "../Images/2024 guide for using besi AI writing assistant.jpg";
 import Card4 from "../Images/chip.jpg";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+  const navigate = useNavigate()
+
+  const handleSignUpClick = () => {
+    navigate("/signup")
+  }
+
+  const handleSignInClick = () => {
+    navigate("/login")
+  }
   return (
     <div className="relative w-full h-screen">
       <img
@@ -85,6 +96,7 @@ function Home() {
               className="ml-6 bg-white p-2 pr-8 pl-8 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
               colorScheme="teal"
               variant="solid"
+              onClick={handleSignUpClick}
             >
               Sign Up
             </Button>
@@ -92,6 +104,7 @@ function Home() {
               className="ml-6 bg-white p-2 pr-8 pl-8 mr-6 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
               colorScheme="teal"
               variant="solid"
+              onClick={handleSignInClick}
             >
               Login
             </Button>
@@ -300,6 +313,7 @@ function Home() {
             colorScheme="teal"
             size="lg"
             className=" w-32 p-4 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50 text-black font-semibold"
+            onClick={handleSignUpClick}
           >
             Sign Up Now
           </Button>
