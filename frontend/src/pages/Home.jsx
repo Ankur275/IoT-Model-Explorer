@@ -82,7 +82,7 @@ function Home() {
                 />
               </InputLeftElement>
               <Input
-                className="flex flexbox m-auto rounded-lg p-1 pr-6 pl-6"
+                className="flex flexbox m-auto text-black rounded-lg p-1 pr-6 pl-6"
                 type="text"
                 placeholder="Search..."
                 bg="gray.800"
@@ -96,6 +96,7 @@ function Home() {
               className="ml-6 bg-white p-2 pr-8 pl-8 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
               colorScheme="teal"
               variant="solid"
+              color={"black"}
               onClick={handleSignUpClick}
             >
               Sign Up
@@ -104,6 +105,7 @@ function Home() {
               className="ml-6 bg-white p-2 pr-8 pl-8 mr-6 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
               colorScheme="teal"
               variant="solid"
+              color={"black"}
               onClick={handleSignInClick}
             >
               Login
@@ -123,8 +125,8 @@ function Home() {
         </p>
       </section>
 
-      <div className="pt-80">
-        <section className="py-20 bg-gray-100 text-center">
+      <div className="pt-56 font-sans ">
+        <section className="py-20 text-black bg-gray-100 text-center">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-bold mb-8">
               About IoT Model Explorer
@@ -140,13 +142,13 @@ function Home() {
         </section>
       </div>
 
-      <div className="bg-teal-500">
+      <div className="bg-teal-500 font-sans">
         <section className="text-center pt-10 pb-10">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-bold mb-8">Features</h2>
             <div className="flex flex-wrap justify-center">
               <div className="w-full md:w-1/2 lg:w-1/3 p-4">
-                <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
+                <div className="p-6 text-black bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
                   <h3 className="text-2xl font-bold mb-4">
                     In-Depth Information
                   </h3>
@@ -157,7 +159,7 @@ function Home() {
                 </div>
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 p-4">
-                <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
+                <div className="p-6  text-black bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
                   <h3 className="text-2xl font-bold mb-4">Real-Time Updates</h3>
                   <p className="text-gray-700">
                     Stay informed with the latest trends and developments in IoT
@@ -166,7 +168,7 @@ function Home() {
                 </div>
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 p-4">
-                <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
+                <div className="p-6  text-black bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
                   <h3 className="text-2xl font-bold mb-4">
                     User-Friendly Interface
                   </h3>
@@ -181,7 +183,7 @@ function Home() {
         </section>
       </div>
 
-      <div className="pb-20">
+      <div className="pb-20 font-sans text-black">
         <section className="flex pt-20 pl-52">
           <div className="flex space-x-6">
             <div className="w-64 p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
@@ -270,13 +272,13 @@ function Home() {
         </section>
       </div>
 
-      <section className="py-20 bg-gray-100 text-center">
+      <section className="py-20 font-sans bg-gray-100 text-center">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">How It Works</h2>
+          <h2 className="text-4xl font-bold mb-8 text-black">How It Works</h2>
           <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-1/3 p-4">
               <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                <h3 className="text-2xl font-bold mb-4">1. Explore</h3>
+                <h3 className="text-2xl font-bold mb-4 text-black">1. Explore</h3>
                 <p className="text-gray-700">
                   Browse through our extensive library of IoT devices.
                 </p>
@@ -284,7 +286,7 @@ function Home() {
             </div>
             <div className="w-full md:w-1/3 p-4">
               <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                <h3 className="text-2xl font-bold mb-4">2. Learn</h3>
+                <h3 className="text-2xl text-black font-bold mb-4">2. Learn</h3>
                 <p className="text-gray-700">
                   Read detailed information and use cases for each device.
                 </p>
@@ -292,7 +294,7 @@ function Home() {
             </div>
             <div className="w-full md:w-1/3 p-4">
               <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                <h3 className="text-2xl font-bold mb-4">3. Implement</h3>
+                <h3 className="text-2xl text-black font-bold mb-4">3. Implement</h3>
                 <p className="text-gray-700">
                   Utilize the knowledge gained to implement IoT solutions.
                 </p>
@@ -302,7 +304,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-teal-500 text-white text-center">
+      <section className="py-20 bg-teal-500 text-white font-sans text-center">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-8">Join Us Today</h2>
           <p className="text-xl mb-8">
