@@ -90,7 +90,7 @@ function Home() {
                 />
               </InputLeftElement>
               <Input
-                className="flex flexbox m-auto rounded-lg p-1 pr-6 pl-6"
+                className="flex flexbox m-auto rounded-lg p-1 text-black pr-6 pl-6"
                 type="text"
                 placeholder="Search..."
                 bg="gray.800"
@@ -103,6 +103,7 @@ function Home() {
             <Button
               className="ml-6 bg-white p-2 pr-8 pl-8 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
               colorScheme="teal"
+              color={"black"}
               variant="solid"
               onClick={handleSignUpClick}
             >
@@ -111,6 +112,7 @@ function Home() {
             <Button
               className="ml-6 bg-white p-2 pr-8 pl-8 mr-6 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
               colorScheme="teal"
+              color={"black"}
               variant="solid"
               onClick={handleSignInClick}
             >
@@ -131,13 +133,13 @@ function Home() {
         </p>
       </section>
 
-      <div className="pt-80">
+      <div className="pt-56 font-sans">
         <section className="py-20 bg-gray-100 text-center">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8">
+            <h2 className="text-4xl font-bold text-black mb-8">
               About IoT Model Explorer
             </h2>
-            <p className="text-lg mb-8">
+            <p className="text-lg mb-8 text-black">
               The IoT Model Explorer is a comprehensive platform that provides
               in-depth information about various IoT devices used across
               different sectors such as healthcare, agriculture, smart cities,
@@ -155,7 +157,7 @@ function Home() {
             <div className="flex flex-wrap justify-center">
               <div className="w-full md:w-1/2 lg:w-1/3 p-4">
                 <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                  <h3 className="text-2xl font-bold mb-4">
+                  <h3 className="text-2xl text-black font-bold mb-4">
                     In-Depth Information
                   </h3>
                   <p className="text-gray-700">
@@ -166,7 +168,7 @@ function Home() {
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 p-4">
                 <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                  <h3 className="text-2xl font-bold mb-4">Real-Time Updates</h3>
+                  <h3 className="text-2xl text-black font-bold mb-4">Real-Time Updates</h3>
                   <p className="text-gray-700">
                     Stay informed with the latest trends and developments in IoT
                     technology.
@@ -175,7 +177,7 @@ function Home() {
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 p-4">
                 <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                  <h3 className="text-2xl font-bold mb-4">
+                  <h3 className="text-2xl text-black font-bold mb-4">
                     User-Friendly Interface
                   </h3>
                   <p className="text-gray-700">
@@ -189,7 +191,7 @@ function Home() {
         </section>
       </div>
 
-      <div className="pb-20">
+      <div className="pb-20 font-sans">
         <section className="flex pt-20 pl-52">
           <div className="flex space-x-6">
             <div className="w-64 p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
@@ -198,7 +200,7 @@ function Home() {
                 alt="IoT Trends"
                 className="pb-6 w-full h-48 object-cover rounded-lg"
               />
-              <p className="font-bold text-lg">Top 5 IoT trends of 2024</p>
+              <p className="font-bold text-black text-lg">Top 5 IoT trends of 2024</p>
               <p className="text-gray-700 mt-2">
                 The Internet of Things (IoT) continues to revolutionize various
                 industries by connecting devices and enabling smarter,
@@ -218,7 +220,7 @@ function Home() {
                 alt="AI"
                 className="pb-6 w-full h-48 object-cover rounded-lg"
               />
-              <p className="font-bold text-lg">
+              <p className="font-bold text-black text-lg">
                 AI for more sustainable Cities
               </p>
               <p className="text-gray-700 mt-2">
@@ -239,7 +241,7 @@ function Home() {
                 alt="AI"
                 className="pb-6 w-full h-48 object-cover rounded-lg"
               />
-              <p className="font-bold text-lg">
+              <p className="font-bold text-black text-lg">
                 AI for more sustainable Cities
               </p>
               <p className="text-gray-700 mt-2">
@@ -260,7 +262,7 @@ function Home() {
                 alt="AI"
                 className="pb-6 w-full h-48 object-cover rounded-lg"
               />
-              <p className="font-bold text-lg">
+              <p className="font-bold text-black text-lg">
                 AI for more sustainable Cities
               </p>
               <p className="text-gray-700 mt-2">
@@ -278,7 +280,7 @@ function Home() {
         </section>
       </div>
 
-      <section className="py-20 bg-gray-100 text-center">
+      <section className="py-20 bg-gray-100 font-sans text-center">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-black">How It Works</h2>
           <div className="flex flex-wrap justify-center">
@@ -292,7 +294,7 @@ function Home() {
             </div>
             <div className="w-full md:w-1/3 p-4">
               <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                <h3 className="text-2xl font-bold mb-4">2. Learn</h3>
+                <h3 className="text-2xl font-bold text-black mb-4">2. Learn</h3>
                 <p className="text-gray-700">
                   Read detailed information and use cases for each device.
                 </p>
@@ -300,7 +302,7 @@ function Home() {
             </div>
             <div className="w-full md:w-1/3 p-4">
               <div className="p-6 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 hover:shadow-lg hover:shadow-blue-500/50">
-                <h3 className="text-2xl font-bold mb-4">3. Implement</h3>
+                <h3 className="text-2xl font-bold text-black mb-4">3. Implement</h3>
                 <p className="text-gray-700">
                   Utilize the knowledge gained to implement IoT solutions.
                 </p>
@@ -310,7 +312,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-teal-500 text-white text-center">
+      <section className="py-20 bg-teal-500 font-sans text-white text-center">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-8">Join Us Today</h2>
           <p className="text-xl mb-8">
