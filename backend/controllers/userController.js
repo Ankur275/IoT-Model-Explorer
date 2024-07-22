@@ -99,9 +99,11 @@ export const resetPasswordRequest = async (req, res) => {
 
         await transporter.sendMail(mailOptions);
 
+        // console.log('Reset token generated and saved:', resetToken); // Log the reset token
+
         res.status(200).json({ message: 'Reset password link sent' });
     } catch (error) {
-        console.error('Error occurred during reset password request:', error);
+        // console.error('Error occurred during reset password request:', error);
         res.status(500).json({ message: error.message, stack: error.stack });
     }
 };
@@ -112,12 +114,15 @@ export const resetPassword = async (req, res) => {
     const { newPassword } = req.body;
 
     try {
+        // console.log('Reset token received:', resetToken); // Log the received reset token
+
         const user = await User.findOne({
             resetPasswordToken: resetToken,
             resetPasswordExpires: { $gt: Date.now() },
         });
 
         if (!user) {
+            // console.log('Token not found or expired'); // Log token not found or expired
             return res.status(400).json({ message: 'Invalid or expired token' });
         }
 
@@ -126,9 +131,12 @@ export const resetPassword = async (req, res) => {
         user.resetPasswordExpires = undefined;
         await user.save();
 
+        // console.log('Password has been reset for user:', user.email); // Log the user email whose password was reset
+
         res.status(200).json({ message: 'Password has been reset' });
     } catch (error) {
-        console.error('Error occurred during password reset:', error);
+        // console.error('Error occurred during password reset:', error);
         res.status(500).json({ message: error.message, stack: error.stack });
     }
 };
+
