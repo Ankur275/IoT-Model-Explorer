@@ -1,9 +1,10 @@
 import User from '../Models/user.js';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
+import { asyncHandler } from '../utils/asyncHandler.js';
+import { ApiError} from '../utils/apiError.js'
+import { ApiResponse} from '../utils/apiResponse.js'
 
 dotenv.config();
 
@@ -20,64 +21,82 @@ const transporter = nodemailer.createTransport({
 });
 
 // Generate JWT Token
-const generateToken = (user) => {
-    return jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, {
-        expiresIn: '1h',
-    });
-};
+const generateAccessAndRefereshTokens = async(userId) =>{
+    try {
+        const user = await User.findById(userId)
+        const accessToken = user.generateAccessToken()
+        const refreshToken = user.generateRefreshToken()
+
+        user.refreshToken = refreshToken
+        await user.save({ validateBeforeSave: false })
+
+        return {accessToken, refreshToken}
+
+
+    } catch (error) {
+        throw new ApiError(500, "Something went wrong while generating referesh and access token")
+    }
+}
 
 // User Signup
-export const signup = async (req, res) => {
+export const signup = asyncHandler( async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
+            throw new ApiError(409, "User with email or username already exists")
         }
 
         const user = new User({ username, email, password });
         await user.save();
 
-        const token = generateToken(user);
-
-        res.status(201).json({ token });
+        // res.status(201).json({ token });
+        return res.status(201).json(new ApiResponse(201,{},"User Registered Successfully"))
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        // res.status(500).json({ message: error.message });
+        throw new ApiError(500,error?.message)
     }
-};
+})
 
 // User Login
-export const login = async (req, res) => {
+export const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-
+    if (!password && !email) {
+        throw new ApiError(400, "Email and password is required")
+    }
     try {
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'Invalid email or password' });
+            throw new ApiError(404, "User not found")
         }
 
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid email or password' });
+            throw new ApiError(400,{},"Invalid email or password")
+        }
+        const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
+
+        const options = {
+            httpOnly: true,
+            secure: true
         }
 
-        const token = generateToken(user);
-
-        res.status(200).json({ token });
+        return res.status(200).cookie("accessToken",accessToken,options).cookie("refreshToken",refreshToken, options).json(new ApiResponse(200,{},"User logged in successfully"));
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        throw new  ApiError(500,error.message)
     }
-};
+})
 
 // Reset Password Request
-export const resetPasswordRequest = async (req, res) => {
+export const resetPasswordRequest = asyncHandler(async (req, res) => {
     const { email } = req.body;
 
     try {
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'User not found' });
+            // return res.status(400).json({ message: 'User not found' });
+            throw new ApiError(400,'User not found')
         }
 
         const resetToken = crypto.randomBytes(32).toString('hex');
@@ -101,15 +120,17 @@ export const resetPasswordRequest = async (req, res) => {
 
         // console.log('Reset token generated and saved:', resetToken); // Log the reset token
 
-        res.status(200).json({ message: 'Reset password link sent' });
+        // res.status(200).json({ message: 'Reset password link sent' });
+        return res.status(200).json(new ApiResponse(200,{},'Reset password link sent'))
     } catch (error) {
         // console.error('Error occurred during reset password request:', error);
-        res.status(500).json({ message: error.message, stack: error.stack });
+        // res.status(500).json({ message: error.message, stack: error.stack });
+        throw new ApiError(500,error?.message,error?.stack)
     }
-};
+})
 
 // Reset Password
-export const resetPassword = async (req, res) => {
+export const resetPassword = asyncHandler(async (req, res) => {
     const { resetToken } = req.params;
     const { newPassword } = req.body;
 
@@ -123,7 +144,8 @@ export const resetPassword = async (req, res) => {
 
         if (!user) {
             // console.log('Token not found or expired'); // Log token not found or expired
-            return res.status(400).json({ message: 'Invalid or expired token' });
+            // return res.status(400).json({ message: 'Invalid or expired token' });
+            throw new ApiError(400,"Invalid or expired token")
         }
 
         user.password = newPassword;
@@ -133,10 +155,12 @@ export const resetPassword = async (req, res) => {
 
         // console.log('Password has been reset for user:', user.email); // Log the user email whose password was reset
 
-        res.status(200).json({ message: 'Password has been reset' });
+        // res.status(200).json({ message: 'Password has been reset' });
+        return res.status(200).json(new ApiResponse(200,{},"Password has been reset"))
     } catch (error) {
         // console.error('Error occurred during password reset:', error);
-        res.status(500).json({ message: error.message, stack: error.stack });
+        // res.status(500).json({ message: error.message, stack: error.stack });
+        throw new ApiError(500,error?.message)
     }
-};
+})
 

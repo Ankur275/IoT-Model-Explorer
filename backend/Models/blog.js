@@ -1,58 +1,74 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const blogSchema = new mongoose.Schema({
-    title: {
-        type: String,
+const commentSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
-        trim: true
-    },
-    description: {
-        type: String,
-        required: true,
-        trim: true
     },
     content: {
         type: String,
         required: true,
+        trim:true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+});
+
+const blogSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, 'Title is required'],
         trim: true
+    },
+    content: {
+        type: String,
+        required: [true, 'Content is required'],
+        trim:true,
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
     },
-    tags: [{
-        type: String
-    }],
     image: {
         type: String,
-        trim: true
-    },
-    views: {
-        type: Number,
-        default: 0
     },
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
     }],
-    comments: [{
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
-        text: {
-            type: String,
-            required: true
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now
-        }
-    }]
-}, { timestamps: true });
+    likeCount: {
+        type: Number,
+        default: 0,
+    },
+    comments: [commentSchema],
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now,
+    },
+}, {
+    timestamps: true
+});
 
-const Blog = mongoose.model('Blog', blogSchema);
+blogSchema.methods.like = function(userId) {
+    if (!this.likes.includes(userId)) {
+        this.likes.push(userId);
+        this.likeCount = this.likes.length;
+    }
+    return this.save();
+};
 
-module.exports = Blog;
+blogSchema.methods.unlike = function(userId) {
+    this.likes = this.likes.filter(id => id.toString() !== userId.toString());
+    this.likeCount = this.likes.length;
+    return this.save();
+};
+
+export default mongoose.model('Blog', blogSchema);

@@ -3,12 +3,17 @@ import dotenv from  'dotenv';
 import connectDB from './config/Database.js';
 import usersRouter from './Routes/userRoute.js';
 import cors from 'cors';
+import cookieParser from "cookie-parser"
 
 dotenv.config();
 
 const app = express();
 const  port = process.env.PORT||3500;
-app.use(express.json());
+
+app.use(express.json({limit: "16kb"}))
+app.use(express.urlencoded({extended: true, limit: "16kb"}))
+app.use(express.static("public"))
+app.use(cookieParser())
 
 const corsOptions = {
     origin: process.env.CORS_ORIGIN, 
