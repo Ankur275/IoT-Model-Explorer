@@ -3,9 +3,13 @@ import { signup, login, resetPasswordRequest, resetPassword } from '../controlle
 
 const router = express.Router();
 
-router.post('/signup', signup);
-router.post('/login', login);
-router.post('/resetPasswordRequest', resetPasswordRequest);
-router.post('/resetPassword/:resetToken', resetPassword);
-
+// router.post('/signup', signup);
+// router.post('/login', login);
+// router.post('/resetPasswordRequest', resetPasswordRequest);
+// router.post('/resetPassword/:resetToken', resetPassword);
+router.route('/signup').post(signup)
+router.route('/login').post(login)
+router.route('/resetPasswordRequest').post(resetPasswordRequest)
+router.route('/resetPassword/:resetToken').post(resetPassword
+)
 export default router;

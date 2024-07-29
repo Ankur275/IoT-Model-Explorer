@@ -71,4 +71,4 @@ blogSchema.methods.unlike = function(userId) {
     return this.save();
 };
 
-export default mongoose.model('Blog', blogSchema);
+export const Blog = mongoose.model('Blog', blogSchema);

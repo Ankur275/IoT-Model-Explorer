@@ -1,4 +1,4 @@
-import User from '../Models/user.js';
+import {User} from '../Models/user.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import dotenv from 'dotenv';
@@ -28,7 +28,7 @@ const generateAccessAndRefereshTokens = async(userId) =>{
         const refreshToken = user.generateRefreshToken()
 
         user.refreshToken = refreshToken
-        await user.save({ validateBeforeSave: false })
+        await User.save({ validateBeforeSave: false })
 
         return {accessToken, refreshToken}
 
