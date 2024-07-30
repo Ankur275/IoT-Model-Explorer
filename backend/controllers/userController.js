@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError} from '../utils/apiError.js'
 import { ApiResponse} from '../utils/apiResponse.js'
+import { log } from 'console';
 
 dotenv.config();
 
@@ -23,17 +24,20 @@ const transporter = nodemailer.createTransport({
 // Generate JWT Token
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
+        console.log(userId);
         const user = await User.findById(userId)
         const accessToken = user.generateAccessToken()
         const refreshToken = user.generateRefreshToken()
-
+        console.log(`Access Token: ${accessToken}`);
+        console.log(`Refresh Token: ${refreshToken}`);
         user.refreshToken = refreshToken
-        await User.save({ validateBeforeSave: false })
+        await user.save({ validateBeforeSave: false })
 
         return {accessToken, refreshToken}
 
 
     } catch (error) {
+        console.log("error in genrating token: ",error);
         throw new ApiError(500, "Something went wrong while generating referesh and access token")
     }
 }
@@ -62,6 +66,7 @@ export const signup = asyncHandler( async (req, res) => {
 // User Login
 export const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body);
     if (!password && !email) {
         throw new ApiError(400, "Email and password is required")
     }
@@ -70,12 +75,15 @@ export const login = asyncHandler(async (req, res) => {
         if (!user) {
             throw new ApiError(404, "User not found")
         }
-
+        console.log(user)
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
             throw new ApiError(400,{},"Invalid email or password")
         }
+        console.log(isMatch);
         const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
+        console.log(accessToken,refreshToken);
+        
 
         const options = {
             httpOnly: true,

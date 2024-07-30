@@ -1,17 +1,32 @@
 import {Blog} from '../Models/blog.js'
-
+import { ApiError} from '../utils/apiError.js'
+import { ApiResponse} from '../utils/apiResponse.js'
+import { uploadOnCloudinary} from '../utils/cloudinary.js'
 // Create a new blog post
 export const createBlogPost = async (req, res) => {
-    const { title, content, image } = req.body;
+    const { title, content} = req.body;
     const author = req.user._id;
 
+    const imagePath = req.file ? req.file.path : null;
+    
+    if(!imagePath){
+        throw new ApiError(400, "Image not found")
+    }
+    console.log(imagePath)
+
     try {
-        const newBlog = new Blog({ title, content, image, author });
+        const image = await uploadOnCloudinary(imagePath)
+        if(!image){
+            throw new ApiError(400, "Failed to upload image")
+        }
+        const newBlog = new Blog({ title, content, image:image?.url || "", author }) ;
         await newBlog.save();
-        res.status(201).json(newBlog);
+        // res.status(201).json(newBlog);
+        return res.status(201).json( new ApiResponse(200, newBlog, "Blog created successfully"))
     } catch (error) {
         console.error('Error creating blog post:', error);
-        res.status(500).json({ message: error.message });
+        // res.status(500).json({ message: error.message });
+        throw new ApiError(500,error.message)
     }
 };
 
