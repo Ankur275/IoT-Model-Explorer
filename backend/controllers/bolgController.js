@@ -1,3 +1,4 @@
+import { Console, log } from 'console';
 import {Blog} from '../Models/blog.js'
 import { ApiError} from '../utils/apiError.js'
 import { ApiResponse} from '../utils/apiResponse.js'
@@ -8,11 +9,10 @@ export const createBlogPost = async (req, res) => {
     const author = req.user._id;
 
     const imagePath = req.file ? req.file.path : null;
-    
+    // console.log(imagePath);
     if(!imagePath){
         throw new ApiError(400, "Image not found")
     }
-    console.log(imagePath)
 
     try {
         const image = await uploadOnCloudinary(imagePath)
@@ -30,15 +30,43 @@ export const createBlogPost = async (req, res) => {
     }
 };
 
-// Get all blog posts
+// Get all blog posts with pagination and error handling
 export const getBlogPosts = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query; // Default to page 1, limit 10
+
     try {
-        const blogs = await Blog.find().populate('author', 'username email').populate('comments.user', 'username email');
-        res.status(200).json(blogs);
+        const blogs = await Blog.find()
+            .populate('author', 'username email')
+            .populate('comments.user', 'username email')
+            .skip((page - 1) * limit)
+            .limit(parseInt(limit))
+            .sort({ createdAt: -1 }); // Sort by createdAt in descending order
+        console.log(`blogs:${blogs}`);
+        const total = await Blog.countDocuments();
+        const totalPages = Math.ceil(total / limit);
+        console.log(`total:${total}`);
+        console.log(`totalPages:${totalPages}`);
+    
+        // Format blogs to include all required fields
+        // const formattedBlogs = blogs.map(blog => ({
+        //     id: blog._id,
+        //     author: blog.author,
+        //     title: blog.title,
+        //     content: blog.content,
+        //     comments: blog.comments,
+        //     likeCount: blog.likeCount,
+        //     createdAt: blog.createdAt,
+        //     updatedAt: blog.updatedAt,
+        //     image: blog.image
+        // }));
+        // console.log(`Fromattedblogs:\n${formattedBlogs}`);
+    
+        return res.status(200).json(new ApiResponse(200, { blogs, total, totalPages, currentPage: page }, "Fetched blog posts successfully"));
     } catch (error) {
         console.error('Error fetching blog posts:', error);
-        res.status(500).json({ message: error.message });
+        throw new ApiError(500, error.message);
     }
+    
 };
 
 // Get a single blog post by ID
