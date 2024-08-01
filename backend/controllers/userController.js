@@ -65,7 +65,7 @@ export const signup = asyncHandler( async (req, res) => {
 // User Login
 export const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     if (!password && !email) {
         throw new ApiError(400, "Email and password is required")
     }
@@ -79,9 +79,9 @@ export const login = asyncHandler(async (req, res) => {
         if (!isMatch) {
             throw new ApiError(400,{},"Invalid email or password")
         }
-        console.log(isMatch);
+        // console.log(isMatch);
         const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
-        console.log(accessToken,refreshToken);
+        // console.log(accessToken,refreshToken);
         
 
         const options = {
@@ -111,7 +111,7 @@ export const resetPasswordRequest = asyncHandler(async (req, res) => {
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
         await user.save();
 
-        const resetUrl = `${req.protocol}://${req.get('host')}/api/users/resetPassword/${resetToken}`;
+        const resetUrl = `http://localhost:5173/api/users/resetPassword/${resetToken}`;
 
         const mailOptions = {
             to: user.email,

@@ -1,4 +1,3 @@
-import { Console, log } from 'console';
 import {Blog} from '../Models/blog.js'
 import { ApiError} from '../utils/apiError.js'
 import { ApiResponse} from '../utils/apiResponse.js'
@@ -7,6 +6,7 @@ import { uploadOnCloudinary} from '../utils/cloudinary.js'
 export const createBlogPost = async (req, res) => {
     const { title, content} = req.body;
     const author = req.user._id;
+    console.log(`author${author}`);
 
     const imagePath = req.file ? req.file.path : null;
     // console.log(imagePath);
@@ -41,11 +41,11 @@ export const getBlogPosts = async (req, res) => {
             .skip((page - 1) * limit)
             .limit(parseInt(limit))
             .sort({ createdAt: -1 }); // Sort by createdAt in descending order
-        console.log(`blogs:${blogs}`);
+        // console.log(`blogs:${blogs}`);
         const total = await Blog.countDocuments();
         const totalPages = Math.ceil(total / limit);
-        console.log(`total:${total}`);
-        console.log(`totalPages:${totalPages}`);
+        // console.log(`total:${total}`);
+        // console.log(`totalPages:${totalPages}`);
     
         // Format blogs to include all required fields
         // const formattedBlogs = blogs.map(blog => ({
@@ -69,47 +69,91 @@ export const getBlogPosts = async (req, res) => {
     
 };
 
+// Get all blog posts created by a specific user
+export const getUserBlogs = async (req, res) => {
+    const userId = req.user._id;
+    console.log(userId);
+    const { page = 1, limit = 10 } = req.query; // Default to page 1, limit 10
+
+    try {
+        const blogs = await Blog.find({ author: userId })
+            .populate('author', 'username email')
+            .populate('comments.user', 'username email')
+            .skip((page - 1) * limit)
+            .limit(parseInt(limit))
+            .sort({ createdAt: -1 }); // Sort by createdAt in descending order
+        const total = await Blog.countDocuments({ author: userId });
+        const totalPages = Math.ceil(total / limit);
+        console.log(blogs);
+    
+        return res.status(200).json(new ApiResponse(200, { blogs, total, totalPages, currentPage: page }, "Fetched user blogs successfully"));
+    } catch (error) {
+        console.error('Error fetching user blogs:', error);
+        throw new ApiError(500, error.message);
+    }
+};
+
 // Get a single blog post by ID
 export const getBlogPost = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const blog = await Blog.findById(id).populate('author', 'username email').populate('comments.user', 'username email');
+        const blog = await Blog.findById(id)
+            .populate('author', 'username email') // Populate author information
+            .populate('comments.user', 'username email'); // Populate comment user information
+
         if (!blog) {
-            return res.status(404).json({ message: 'Blog not found' });
+            // If no blog is found, return a 404 error
+            // return res.status(404).json(new ApiResponse(404, {}, 'Blog not found'));
+            throw new ApiError(404, 'Blog not found')
         }
-        res.status(200).json(blog);
+
+        // Return the blog post with a 200 status
+        return res.status(200).json(new ApiResponse(200, blog, 'Blog fetched successfully'));
     } catch (error) {
+        // Log the error and return a 500 status
         console.error('Error fetching blog post:', error);
-        res.status(500).json({ message: error.message });
+        // return res.status(500).json(new ApiResponse(500, null, error.message));
+        throw new ApiError(500, error.message)
     }
 };
 
 // Update a blog post by ID
 export const updateBlogPost = async (req, res) => {
     const { id } = req.params;
-    const { title, content, image } = req.body;
+    const { title, content } = req.body;
 
     try {
         const blog = await Blog.findById(id);
         if (!blog) {
-            return res.status(404).json({ message: 'Blog not found' });
+            // return res.status(404).json({ message: 'Blog not found' });
+            throw new ApiError(404,'Blog not found')
         }
 
         if (blog.author.toString() !== req.user._id.toString()) {
-            return res.status(403).json({ message: 'User not authorized to update this blog' });
+            // return res.status(403).json({ message: 'User not authorized to update this blog' });
+            throw new ApiError(403,'User not authorized to update this blog');
         }
 
         blog.title = title || blog.title;
         blog.content = content || blog.content;
-        blog.image = image || blog.image;
+
+        if (req.file) {
+            const imagePath = req.file.path;
+            const image = await uploadOnCloudinary(imagePath);
+            if (!image) {
+                throw new ApiError(400, "Failed to upload image");
+            }
+            blog.image = image.url;
+        }
+
         blog.updatedAt = Date.now();
 
         await blog.save();
-        res.status(200).json(blog);
+        res.status(200).json(new ApiResponse(200, blog, "Blog updated successfully"));
     } catch (error) {
         console.error('Error updating blog post:', error);
-        res.status(500).json({ message: error.message });
+        throw new ApiError(500, error.message);
     }
 };
 
@@ -120,11 +164,13 @@ export const deleteBlogPost = async (req, res) => {
     try {
         const blog = await Blog.findById(id);
         if (!blog) {
-            return res.status(404).json({ message: 'Blog not found' });
+            // return res.status(404).json({ message: 'Blog not found' });
+            throw new ApiError(404,"Blog not found")
         }
 
         if (blog.author.toString() !== req.user._id.toString()) {
-            return res.status(403).json({ message: 'User not authorized to delete this blog' });
+            // return res.status(403).json({ message: 'User not authorized to delete this blog' });
+            throw new ApiError(403,'User not authorized todelete this blog')
         }
 
         await blog.remove();
