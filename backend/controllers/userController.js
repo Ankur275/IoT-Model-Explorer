@@ -42,7 +42,7 @@ const generateAccessAndRefereshTokens = async(userId) =>{
 }
 
 // User Signup
-export const signup = asyncHandler( async (req, res) => {
+export const signup = asyncHandler( async (req, res, next) => {
     const { username, email, password } = req.body;
 
     try {
@@ -58,12 +58,13 @@ export const signup = asyncHandler( async (req, res) => {
         return res.status(201).json(new ApiResponse(201,{},"User Registered Successfully"))
     } catch (error) {
         // res.status(500).json({ message: error.message });
-        throw new ApiError(500,error?.message)
+        // throw new ApiError(500,error?.message)
+        next(error)
     }
 })
 
 // User Login
-export const login = asyncHandler(async (req, res) => {
+export const login = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
     // console.log(req.body);
     if (!password && !email) {
@@ -91,12 +92,13 @@ export const login = asyncHandler(async (req, res) => {
 
         return res.status(200).cookie("accessToken",accessToken,options).cookie("refreshToken",refreshToken, options).json(new ApiResponse(200,{},"User logged in successfully"));
     } catch (error) {
-        throw new  ApiError(500,error.message)
+        // throw new  ApiError(500,error.message)
+        next(error)
     }
 })
 
 // Reset Password Request
-export const resetPasswordRequest = asyncHandler(async (req, res) => {
+export const resetPasswordRequest = asyncHandler(async (req, res, next) => {
     const { email } = req.body;
 
     try {
@@ -132,12 +134,13 @@ export const resetPasswordRequest = asyncHandler(async (req, res) => {
     } catch (error) {
         // console.error('Error occurred during reset password request:', error);
         // res.status(500).json({ message: error.message, stack: error.stack });
-        throw new ApiError(500,error?.message,error?.stack)
+        // throw new ApiError(500,error?.message,error?.stack)
+        next(error)
     }
 })
 
 // Reset Password
-export const resetPassword = asyncHandler(async (req, res) => {
+export const resetPassword = asyncHandler(async (req, res, next) => {
     const { resetToken } = req.params;
     const { newPassword } = req.body;
 
@@ -167,7 +170,31 @@ export const resetPassword = asyncHandler(async (req, res) => {
     } catch (error) {
         // console.error('Error occurred during password reset:', error);
         // res.status(500).json({ message: error.message, stack: error.stack });
-        throw new ApiError(500,error?.message)
+        // throw new ApiError(500,error?.message)
+        next(error)
     }
 })
 
+// User Logout
+export const logout = asyncHandler(async (req, res, next) => {
+    try {
+        const userId = req.user._id;
+
+        // Find the user by ID and invalidate the refresh token
+        const user = await User.findById(userId);
+        if (!user) {
+            throw new ApiError(404, "User not found");
+        }
+
+        user.refreshToken = null; // Invalidate the refresh token
+        await user.save({ validateBeforeSave: false });
+
+        // Clear the cookies on the client side
+        res.clearCookie('accessToken');
+        res.clearCookie('refreshToken');
+
+        return res.status(200).json(new ApiResponse(200, {}, "User logged out successfully"));
+    } catch (error) {
+        next(error);
+    }
+});

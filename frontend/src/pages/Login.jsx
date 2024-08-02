@@ -23,7 +23,7 @@ const Login = () => {
 
         if (response.ok) {
             setMessage("Login Successful!!");
-            navigate('/home');
+            navigate('/');
         }
         else {
             setMessage(data.message || 

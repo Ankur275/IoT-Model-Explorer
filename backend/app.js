@@ -5,6 +5,7 @@ import usersRouter from './Routes/userRoute.js';
 import blogRouter from './Routes/blogRoute.js';
 import cors from 'cors';
 import cookieParser from "cookie-parser"
+import { errorHandler } from './middleware/errorHandlerMiddleware.js';
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.use(cors(corsOptions));
 
 app.use('/api/users',usersRouter)
 app.use('/api/blogs',blogRouter)
+
+app.use(errorHandler);
 
 connectDB().then(()=>{
     app.listen(port,()=>{
