@@ -14,10 +14,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
 import Bg1 from "../Images/bg1.jpg";
 import Card1 from "../Images/card1.jpg";
@@ -29,31 +25,51 @@ import { useNavigate } from "react-router-dom";
 const isAuthenticated = false;
 
 function Home() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleProtectedAction = () => {
-    if(!isAuthenticated) {
-      navigate("/signup")
+    if (!isAuthenticated) {
+      navigate("/signup");
     }
-  }
+  };
 
   const handleSignUpClick = () => {
-    navigate("/signup")
-  }
+    navigate("/signup");
+  };
 
   const handleSignInClick = () => {
-    navigate("/login")
-  }
+    navigate("/login");
+  };
+
+  const handleSectorClick = (sector) => {
+    switch (sector) {
+      case "Healthcare":
+        navigate("/healthcare");
+        break;
+      case "Agriculture":
+        navigate("/agriculture");
+        break;
+      case "Smart Cities":
+        navigate("/smartcities");
+        break;
+      case "Smart Homes":
+        navigate("/smarthomes");
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen font-sans">
       <img
         src={Bg1}
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover -z-10"
       />
-      <div className="font-sans">
-        <nav className="bg-transparent flex items-center justify-between h-24">
+      
+      <header className="sticky top-0 z-50 bg-cyan-600 shadow-md">
+        <nav className="bg-transparent flex items-center justify-between h-20">
           <div className="flex items-center">
             <img src={IoT} alt="IoT Logo" className="h-32" />
             <ul className="flex text-white">
@@ -66,10 +82,10 @@ function Home() {
                     Sectors
                   </MenuButton>
                   <MenuList>
-                    <MenuItem>Healthcare</MenuItem>
-                    <MenuItem>Agriculture</MenuItem>
-                    <MenuItem>Smart Cities</MenuItem>
-                    <MenuItem>Smart Homes</MenuItem>
+                    <MenuItem onClick={() => handleSectorClick("Healthcare")}>Healthcare</MenuItem>
+                    <MenuItem onClick={() => handleSectorClick("Agriculture")}>Agriculture</MenuItem>
+                    <MenuItem onClick={() => handleSectorClick("Smart Cities")}>Smart Cities</MenuItem>
+                    <MenuItem onClick={() => handleSectorClick("Smart Homes")}>Smart Homes</MenuItem>
                   </MenuList>
                 </Menu>
               </li>
@@ -123,7 +139,8 @@ function Home() {
             </AvatarGroup>
           </div>
         </nav>
-      </div>
+      </header>
+
 
       <section>
         <p className="relative font-sans text-4xl font-extrabold m-36 text-center text-head">
@@ -330,7 +347,6 @@ function Home() {
         </div>
       </section>
     </div>
-    
   );
 }
 

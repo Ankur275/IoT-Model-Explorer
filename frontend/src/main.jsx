@@ -12,18 +12,21 @@ import Healthcare from './pages/Healthcare'
 import AgriculturePage from './pages/Agriculture'
 import SmartCitiesPage from './pages/SmartCities'
 import SmartHomesPage from './pages/SmartHomes'
+// import Blog from './pages/Blog'
 
 const router = createBrowserRouter(createRoutesFromElements (
   <>
+  <Route path="/" element={<Home />} />
   <Route path="/login" element={<Login />} />
   <Route path="/signup" element={<SignUp />} />
   <Route path="/forgot-password" element={<ForgetPassword />} />
-  <Route path="/" element={<Home />} />
   <Route path='/oximeter' element={<Oximeter />} />
   <Route path='/healthcare' element={<Healthcare />} />
   <Route path='agriculture' element={<AgriculturePage />} />
   <Route path='smartcities' element={<SmartCitiesPage />} />
   <Route path='smarthomes' element={<SmartHomesPage />} />
+  {/* <Route path='blogs' element={<Blog />} /> */}
+
   </>
 ))
 

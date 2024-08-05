@@ -92,6 +92,7 @@ return (
                                 className="font-medium text-blue-500
                                 hover:text-blue-600"
                                 to="/forgot-password"
+                                
                             >
                                 Forgot your password?
                             </NavLink>

@@ -1,18 +1,45 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
-    const [newPasswordVisible, setNewPasswordVisible] = useState(false)
-    const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
-    const toggleNewPasswordVisible = () => {
-        setConfirmPasswordVisible(!newPasswordVisible)
+    const handleReset = async (e) => {
+        e.preventDefault();
+
+        if (newPassword !== confirmNewPassword) {
+            setMessage("Passwords do not match");
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:4000/api/users/reset-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({newPassword, confirmNewPassword}),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            setMessage("Password reset Successful!!");
+            navigate('/login');
+        }
+        
+        else {
+            setMessage(data.message);
+
+        }
     }
-
-    const toggleConfirmPasswordVisible = () => {
-        setConfirmPasswordVisible(!confirmPasswordVisible)
-
+    catch (error) {
+        console.error("Error reseting password:", error);
+        setMessage("Password reset Failed!!!")
     }
+};
     return (
     <div className= 'h-screen bg-cover bg-no-repeat bg-center bg-fixed'
     style={{backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}}>
@@ -26,7 +53,7 @@ const ForgetPassword = () => {
                     Reset Your Password
                 </h2>
                 <p className="mt-4 text-center text-white">Be Creative. Set a password that is easy to remember and hard to guess</p>
-                <form method="POST" action="#" className="mt-8 space-y-6">
+                <form onSubmit={handleReset} className="mt-8 space-y-6">
                     <div className="rounded-md shadow-sm">
                         <div>
                             <input
@@ -34,8 +61,8 @@ const ForgetPassword = () => {
                                 className="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500focus:border-indigo-500 focus:z-10 sm:text-sm"
                                 required="true"
                                 type="password"
-                                name="new-pass"
-                                id="new-pass" />
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}/>
                         </div>
                         <div className="mt-4">
                             <input
@@ -43,8 +70,8 @@ const ForgetPassword = () => {
                                 className="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                 required="true"
                                 type="password"
-                                name="new-pass"
-                                id="new-pass" />
+                                value={confirmNewPassword}
+                                onChange={(e) => setConfirmNewPassword(e.target.value)}/>
                         </div>
                     </div>
 
