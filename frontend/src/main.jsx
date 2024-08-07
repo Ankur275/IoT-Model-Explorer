@@ -12,6 +12,7 @@ import Healthcare from './pages/Healthcare'
 import AgriculturePage from './pages/Agriculture'
 import SmartCitiesPage from './pages/SmartCities'
 import SmartHomesPage from './pages/SmartHomes'
+import BlogForm from './pages/Blog'
 // import Blog from './pages/Blog'
 
 const router = createBrowserRouter(createRoutesFromElements (
@@ -25,7 +26,7 @@ const router = createBrowserRouter(createRoutesFromElements (
   <Route path='agriculture' element={<AgriculturePage />} />
   <Route path='smartcities' element={<SmartCitiesPage />} />
   <Route path='smarthomes' element={<SmartHomesPage />} />
-  {/* <Route path='blogs' element={<Blog />} /> */}
+  <Route path='blogs' element={<BlogForm />} />
 
   </>
 ))

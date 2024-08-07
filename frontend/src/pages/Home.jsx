@@ -86,6 +86,7 @@ function Home() {
                     <MenuItem onClick={() => handleSectorClick("Agriculture")}>Agriculture</MenuItem>
                     <MenuItem onClick={() => handleSectorClick("Smart Cities")}>Smart Cities</MenuItem>
                     <MenuItem onClick={() => handleSectorClick("Smart Homes")}>Smart Homes</MenuItem>
+                    <MenuItem onClick={() => handleSectorClick("Others")}>Others</MenuItem>
                   </MenuList>
                 </Menu>
               </li>
@@ -259,11 +260,10 @@ function Home() {
                 className="pb-6 w-full h-48 object-cover rounded-lg"
               />
               <p className="font-bold text-black text-lg">
-                AI for more sustainable Cities
+              2024 guide for using best AI writing assistant
               </p>
               <p className="text-gray-700 mt-2">
-                As urban populations continue to grow, cities around the world
-                face increasing pressure to become more sustainable.
+              Transform Your Writing Workflow: A Comprehensive 2024 Guide to Leveraging the Best AI Writing Assistants for Unmatched Efficiency and Quality
               </p>
               <a
                 href="#"
@@ -280,11 +280,10 @@ function Home() {
                 className="pb-6 w-full h-48 object-cover rounded-lg"
               />
               <p className="font-bold text-black text-lg">
-                AI for more sustainable Cities
+                The revolution of Microchips
               </p>
               <p className="text-gray-700 mt-2">
-                As urban populations continue to grow, cities around the world
-                face increasing pressure to become more sustainable.
+              Exploring the Future: How Microchip Innovations Are Shaping a Smarter World in 2024
               </p>
               <a
                 href="#"

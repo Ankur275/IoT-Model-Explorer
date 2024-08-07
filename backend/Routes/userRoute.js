@@ -1,5 +1,6 @@
 import express from 'express';
-import { signup, login, resetPasswordRequest, resetPassword } from '../controllers/userController.js';
+import { signup, login, resetPasswordRequest, resetPassword, logout } from '../controllers/userController.js';
+import { verifyJWT } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -10,6 +11,6 @@ const router = express.Router();
 router.route('/signup').post(signup)
 router.route('/login').post(login)
 router.route('/resetPasswordRequest').post(resetPasswordRequest)
-router.route('/resetPassword/:resetToken').post(resetPassword
-)
+router.route('/resetPassword/:resetToken').post(resetPassword)
+router.route('/logout').post(verifyJWT, logout)
 export default router;
