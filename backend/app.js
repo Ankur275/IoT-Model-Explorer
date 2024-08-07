@@ -3,6 +3,7 @@ import dotenv from  'dotenv';
 import connectDB from './config/Database.js';
 import usersRouter from './Routes/userRoute.js';
 import blogRouter from './Routes/blogRoute.js';
+import searchRouter from './Routes/searchRoute.js';
 import cors from 'cors';
 import cookieParser from "cookie-parser"
 import { errorHandler } from './middleware/errorHandlerMiddleware.js';
@@ -26,6 +27,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/users',usersRouter)
 app.use('/api/blogs',blogRouter)
+app.use('/api/blogAndUsers',searchRouter)
 
 app.use(errorHandler);
 

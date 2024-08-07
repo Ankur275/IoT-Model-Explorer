@@ -57,6 +57,8 @@ const blogSchema = new mongoose.Schema({
     timestamps: true
 });
 
+blogSchema.index({ title: 'text', author: 'text' });
+
 blogSchema.methods.like = function(userId) {
     if (!this.likes.includes(userId)) {
         this.likes.push(userId);

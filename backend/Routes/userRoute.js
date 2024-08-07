@@ -8,6 +8,9 @@ const router = express.Router();
 // router.post('/login', login);
 // router.post('/resetPasswordRequest', resetPasswordRequest);
 // router.post('/resetPassword/:resetToken', resetPassword);
+
+
+
 router.route('/signup').post(signup)
 router.route('/login').post(login)
 router.route('/resetPasswordRequest').post(resetPasswordRequest)
