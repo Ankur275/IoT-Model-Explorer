@@ -21,6 +21,7 @@ import Card2 from "../Images/ultimate Quantum Microchip Tech.jpg";
 import Card3 from "../Images/2024 guide for using besi AI writing assistant.jpg";
 import Card4 from "../Images/chip.jpg";
 import { useNavigate } from "react-router-dom";
+import { Device } from "../../../backend/Models/device";
 
 const isAuthenticated = false;
 
@@ -36,11 +37,48 @@ function Home() {
   const handleSignUpClick = () => {
     navigate("/signup");
   };
-
+  const handleBlog1Click= () => {
+    navigate("/exa");
+  };
+  const handleBlog2Click= () => {
+    navigate("/exb");
+  };
+  const handleBlog3Click= () => {
+    navigate("/exc");
+  };
+  const handleBlog4Click= () => { 
+    navigate("/exd");
+    };
+  const handleAboutUsClick = () => {
+    navigate("/aboutus");
+  };
   const handleSignInClick = () => {
     navigate("/login");
   };
-
+  const handleDevicesClick = (device) => {
+    switch (device) {
+      case "Oximeter":
+        navigate("/oximeter");
+        break;
+        case "Smart Pill":
+          navigate("/smartpill");
+          break;
+        case "Glucose Monitor":
+          navigate("/glucosemonitor");
+          break;
+        case "Fitness Tracker":
+          navigate("/FitnessTracker");
+          break;
+          case "ECG Monitor":
+          navigate("/ecg");
+          break;
+          case "Smart Inhaler":
+            navigate("/smartinhaler");
+            break;
+      default:
+        break;
+    }
+  };
   const handleSectorClick = (sector) => {
     switch (sector) {
       case "Healthcare":
@@ -59,7 +97,9 @@ function Home() {
         break;
     }
   };
-
+const handleBlogClick = () =>{
+  navigate("/Blog")
+}
   return (
     <div className="relative w-full h-screen font-sans">
       <img
@@ -91,22 +131,37 @@ function Home() {
                 </Menu>
               </li>
               <li className="relative pl-6 pr-14 font-semibold transition duration-300 ease-in-out after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-gray-400 after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100">
+                <Menu>
+                  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                    Devices
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem onClick={() => handleDevicesClick("Oximeter")}>Oximeter</MenuItem>
+                    <MenuItem onClick={() => handleDevicesClick("Smart Pill")}>Smart Pill</MenuItem>
+                    <MenuItem onClick={() => handleDevicesClick("Glucose Monitor")}>Glucose Monitor</MenuItem>
+                    <MenuItem onClick={() => handleDevicesClick("Fitness Tracker")}>Fitness Tracker</MenuItem>
+                    <MenuItem onClick={() => handleDevicesClick("ECG Monitor")}>ECG Monitor</MenuItem>
+                    <MenuItem onClick={() => handleDevicesClick("Smart Inhaler")}>Smart Inhaler</MenuItem>
+                  </MenuList>
+                </Menu>
+              </li>
+              <li className="relative pl-6 pr-14 font-semibold transition duration-300 ease-in-out after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-gray-400 after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100" onClick={handleBlogClick}>
                 Blog
               </li>
-              <li className="relative pl-6 pr-14 font-semibold transition duration-300 ease-in-out after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-gray-400 after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100">
+              <li className="relative pl-6 pr-14 font-semibold transition duration-300 ease-in-out after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-gray-400 after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100"  onClick={handleAboutUsClick}>
                 About Us
               </li>
             </ul>
           </div>
           <div className="flex items-center">
             <InputGroup className="mr-6 pr-44">
-              <InputLeftElement pointerEvents="none" className="pt-2 pl-1 h-9">
+              {/* <InputLeftElement pointerEvents="none" className="pt-2 pl-1 h-9">
                 <Search2Icon
                   boxSize={18}
                   className="rounded-l-lg flex flexbox m-56 mt-52"
                 />
-              </InputLeftElement>
-              <Input
+              </InputLeftElement> */}
+              {/* <Input
                 className="flex flexbox m-auto rounded-lg p-1 text-black pr-6 pl-6"
                 type="text"
                 placeholder="Search..."
@@ -115,7 +170,7 @@ function Home() {
                 _placeholder={{ color: "gray.500" }}
                 _focus={{ bg: "gray.700", borderColor: "blue.500" }}
                 rounded="full"
-              />
+              /> */}
             </InputGroup>
             <Button
               className="ml-6 bg-white p-2 pr-8 pl-8 rounded-xl font-bold shadow-md overflow-hidden transition duration-300 ease-in-out before:absolute before:inset-0 before:border-2 before:border-indigo-500 before:scale-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:scale-100 hover:bg-transparent hover:text-indigo-500"
@@ -226,7 +281,7 @@ function Home() {
               </p>
               <a
                 href="#"
-                className="text-blue-500 hover:text-blue-700 mt-4 block"
+                className="text-blue-500 hover:text-blue-700 mt-4 block" onClick={handleBlog1Click}
               >
                 Learn More
               </a>
@@ -247,9 +302,9 @@ function Home() {
               </p>
               <a
                 href="#"
-                className="text-blue-500 hover:text-blue-700 mt-4 block"
+                className="text-blue-500 hover:text-blue-700 mt-4 block"  onClick={handleBlog3Click}
               >
-                Learn More
+                Learn More  
               </a>
             </div>
 
@@ -267,7 +322,7 @@ function Home() {
               </p>
               <a
                 href="#"
-                className="text-blue-500 hover:text-blue-700 mt-4 block"
+                className="text-blue-500 hover:text-blue-700 mt-4 block"  onClick={handleBlog2Click}
               >
                 Learn More
               </a>
@@ -287,7 +342,7 @@ function Home() {
               </p>
               <a
                 href="#"
-                className="text-blue-500 hover:text-blue-700 mt-4 block"
+                className="text-blue-500 hover:text-blue-700 mt-4 block"  onClick={handleBlog4Click}
               >
                 Learn More
               </a>

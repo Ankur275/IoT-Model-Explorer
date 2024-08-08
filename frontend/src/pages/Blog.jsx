@@ -6,6 +6,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ShareIcon from '@mui/icons-material/Share';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const BlogForm = () => {
   const [title, setTitle] = useState('');
@@ -16,7 +18,7 @@ const BlogForm = () => {
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
+      setImage(e.target.files[0]); // Store the file object
     }
   };
 
@@ -24,10 +26,34 @@ const BlogForm = () => {
     setImage(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({ title, content, sector, image });
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('blogImage', image);
+
+    try {
+      // Retrieve the access token from cookies
+      const token = Cookies.get('accessToken');
+
+      const response = await axios.post('http://localhost:4000/api/blogs/createBlog', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`, // Attach token to headers
+        },
+      });
+      console.log('Blog created successfully:', response.data);
+      // Reset form fields or display a success message
+      setTitle('');
+      setContent('');
+      setSector('');
+      setImage(null);
+    } catch (error) {
+      console.error('Error creating blog:', error);
+      // Handle error (display error message or similar)
+    }
   };
 
   const handleLike = () => {
@@ -99,7 +125,7 @@ const BlogForm = () => {
               {image && (
                 <Box mt={2} position="relative" display="inline-block">
                   <motion.img
-                    src={image}
+                    src={URL.createObjectURL(image)}
                     alt="Preview"
                     style={{ maxWidth: '100%', maxHeight: '300px', display: 'block', margin: '1rem auto', border: '2px solid #0d47a1', borderRadius: '10px' }}
                     initial={{ opacity: 0 }}

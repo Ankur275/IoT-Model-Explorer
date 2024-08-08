@@ -19,17 +19,10 @@ import { AiFillEnvironment, AiOutlineSafetyCertificate } from "react-icons/ai";
 const OximeterInfo = () => {
   return (
     <div className="mx-auto p-6 bg-gray-900 text-white font-sans">
-      <nav className="w-72 bg-gray-800 p-6 fixed h-full shadow-lg">
-        <ul>
-          
-        </ul>
-      </nav>
-
-      <h1 className="text-6xl pl-72 font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse">
+      <h1 className="text-6xl font-extrabold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse">
         Oximeter Information
       </h1>
 
-      <div className="pl-80">
       <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-blue-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <FaHeartbeat className="mr-3 text-red-400 animate-pulse" />
@@ -45,10 +38,7 @@ const OximeterInfo = () => {
           respiratory conditions.
         </p>
       </section>
-      </div>
-      
 
-      <div className="pl-80">
       <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-green-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <GiHeartBeats className="mr-3 text-blue-400 animate-pulse" />
@@ -87,9 +77,7 @@ const OximeterInfo = () => {
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
       <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-pink-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <GiAbstract046 className="mr-3 text-green-400 animate-pulse" />
@@ -127,9 +115,7 @@ const OximeterInfo = () => {
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
       <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-cyan-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <MdLocalHospital className="mr-3 text-red-500 animate-pulse" />
@@ -160,9 +146,7 @@ const OximeterInfo = () => {
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
       <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-orange-700 ">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <GiImpactPoint className="mr-3 text-purple-600 animate-pulse" />
@@ -190,9 +174,7 @@ const OximeterInfo = () => {
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
       <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-green-700">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <MdRateReview className="mr-3 text-yellow-600 animate-pulse" />
@@ -222,233 +204,224 @@ const OximeterInfo = () => {
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-blue-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-indigo-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <MdOutlineHistory className="mr-3 text-green-600 animate-pulse" />
-          History of Oximeters
-        </h2>
-        <ul className="list-disc ml-6 space-y-2">
-          <li>
-            Invention: The first oximeter was developed in the 1940s by Japanese
-            bioengineer Takuo Aoyagi. It was a bulky device primarily used in
-            medical research.
-          </li>
-          <li>
-            Evolution: Over the years, oximeters became more compact, portable,
-            and user-friendly, with significant advancements in sensor
-            technology and data processing.
-          </li>
-          <li>
-            Modern Era: Today, oximeters are widely used in medical facilities,
-            homes, and even in fitness monitoring, offering a range of features
-            like Bluetooth connectivity and data storage.
-          </li>
-        </ul>
-      </section>
-      </div>
-
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-purple-700">
-        <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <LiaIndustrySolid className="mr-3 text-pink-600 animate-pulse" />
-          Industrial Adaptation
-        </h2>
-        <ul className="list-disc ml-6 space-y-2">
-          <li>
-            Healthcare: Widely adopted in hospitals and clinics for monitoring
-            patients.
-          </li>
-          <li>
-            Home Healthcare: Increasingly used in home healthcare settings for
-            managing chronic conditions.
-          </li>
-          <li>
-            Sports Medicine: Used by athletes and trainers to monitor oxygen
-            levels during training.
-          </li>
-          <li>
-            Aviation: Used by pilots and passengers in unpressurized aircraft.
-          </li>
-          <li>
-            Pandemic Response: Critical tool during the COVID-19 pandemic.
-          </li>
-        </ul>
-      </section>
-      </div>
-
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-yellow-700">
-        <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <GrInstall className="mr-3 text-yellow-600 animate-pulse" />
+          <GrInstall className="mr-3 text-green-500 animate-pulse" />
           Installation and Maintenance
         </h2>
         <ul className="list-disc ml-6 space-y-2">
           <li>
-            Installation: Simple installation process involving attaching the
-            device to the fingertip or earlobe.
+            Installation: Most pulse oximeters are ready to use out of the box
+            with minimal setup required. Simply insert batteries, power on the
+            device, and place the sensor on the fingertip.
           </li>
           <li>
-            Maintenance: Regular calibration and cleaning are essential for
-            accurate readings.
+            Cleaning: Regularly clean the sensor with a soft cloth and mild
+            disinfectant to maintain hygiene and accuracy.
           </li>
           <li>
-            Battery Replacement: Timely replacement of batteries or recharging
-            is crucial.
+            Battery Replacement: Ensure timely replacement or recharging of
+            batteries to avoid interruptions in usage.
+          </li>
+          <li>
+            Calibration: Although most oximeters are factory calibrated, periodic
+            calibration checks using reference devices can ensure ongoing
+            accuracy.
+          </li>
+          <li>
+            Storage: Store the oximeter in a cool, dry place when not in use to
+            prolong its lifespan.
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-indigo-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-yellow-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
           <GrShieldSecurity className="mr-3 text-red-600 animate-pulse" />
           Security and Privacy
         </h2>
         <ul className="list-disc ml-6 space-y-2">
           <li>
-            Data Encryption: Ensuring data is encrypted during transmission.
+            Data Encryption: Advanced models use encryption to protect data
+            transmitted to mobile apps or cloud services.
           </li>
           <li>
-            User Authentication: Implementing robust user authentication
-            methods.
+            User Consent: Ensure users consent to data collection and
+            understand how their data will be used and stored.
           </li>
           <li>
-            Compliance: Adhering to data protection regulations like GDPR and
-            HIPAA.
+            Regular Updates: Manufacturers should provide regular firmware
+            updates to address potential security vulnerabilities.
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-pink-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-lime-500">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <GiArchiveResearch className="mr-3 text-blue-600 animate-pulse" />
-          Research and Development
+          <MdOutlineHistory className="mr-3 text-blue-500 animate-pulse" />
+          Historical Context
+        </h2>
+        <p className="leading-relaxed">
+          The pulse oximeter was invented in the early 1970s by Takuo Aoyagi, a
+          Japanese bioengineer. Aoyagi's work revolutionized non-invasive
+          monitoring of blood oxygen levels. The technology quickly gained
+          widespread adoption in medical practice due to its critical role in
+          monitoring patient health, particularly during anesthesia and in
+          intensive care units. Over the years, advancements in electronics and
+          sensor technology have made pulse oximeters more accurate, affordable,
+          and accessible to a broader range of users, including home healthcare
+          and sports enthusiasts.
+        </p>
+      </section>
+
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-pink-600">
+        <h2 className="text-3xl font-semibold mb-4 flex items-center">
+          <LiaIndustrySolid className="mr-3 text-pink-500 animate-pulse" />
+          Industry Adoption
         </h2>
         <ul className="list-disc ml-6 space-y-2">
           <li>
-            New Technologies: Exploring advanced sensor technologies for
-            improved accuracy.
+            Healthcare Industry: Standard equipment in hospitals, clinics, and
+            emergency services for patient monitoring.
           </li>
           <li>
-            Integration: Developing integration capabilities with other health
-            monitoring devices.
+            Home Health Care: Increasing adoption among patients with chronic
+            illnesses for at-home monitoring.
           </li>
           <li>
-            AI and ML: Utilizing artificial intelligence and machine learning
-            for better data analysis.
+            Fitness and Sports: Popular among athletes and fitness enthusiasts
+            for monitoring oxygen levels during physical activities.
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-yellow-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-blue-700">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <AiOutlineSafetyCertificate className="mr-3 text-green-600 animate-pulse" />
-          Safety and Regulations
+          <BsGraphUpArrow className="mr-3 text-blue-600 animate-pulse" />
+          Economic Impact
         </h2>
-        <ul className="list-disc ml-6 space-y-2">
-          <li>
-            Certifications: Ensuring the device meets medical standards (CE,
-            FDA).
-          </li>
-          <li>Compliance: Adhering to international safety regulations.</li>
-          <li>
-            User Training: Providing adequate training for users to ensure
-            proper use.
-          </li>
-        </ul>
+        <p className="leading-relaxed">
+          The widespread adoption of pulse oximeters has had a significant
+          economic impact on the healthcare industry. By enabling early
+          detection and management of respiratory conditions, these devices have
+          reduced hospital admissions and associated healthcare costs.
+          Additionally, the growth in the home healthcare market has driven
+          demand for portable and affordable oximeters, leading to increased
+          competition and innovation in the medical device industry. The COVID-19
+          pandemic further highlighted the importance of pulse oximeters,
+          resulting in a surge in demand and production.
+        </p>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-cyan-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-green-700">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <AiFillEnvironment className="mr-3 text-green-600 animate-pulse" />
+          <AiFillEnvironment className="mr-3 text-green-400 animate-pulse" />
           Environmental Impact
         </h2>
         <ul className="list-disc ml-6 space-y-2">
           <li>
-            Eco-Friendly Materials: Encouraging the use of recyclable materials
-            in manufacturing.
+            Battery Waste: Proper disposal of batteries is essential to prevent
+            environmental contamination.
           </li>
           <li>
-            Energy Efficiency: Promoting energy-efficient designs to reduce
-            power consumption.
+            Electronic Waste: As with all electronic devices, responsible
+            disposal and recycling of oximeters can minimize environmental
+            impact.
           </li>
           <li>
-            Disposal: Implementing proper disposal methods for batteries and
-            electronic components.
+            Sustainable Design: Some manufacturers are exploring eco-friendly
+            materials and energy-efficient designs to reduce the environmental
+            footprint of their devices.
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-orange-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-yellow-700">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <BsGraphUpArrow className="mr-3 text-yellow-600 animate-pulse" />
-          Future Trends
+          <AiOutlineSafetyCertificate className="mr-3 text-yellow-500 animate-pulse" />
+          Regulatory Compliance
         </h2>
         <ul className="list-disc ml-6 space-y-2">
           <li>
-            Wearable Technology: Development of oximeter functionalities in
-            smartwatches and fitness bands.
+            Certification: Pulse oximeters must comply with regulations from
+            health authorities such as the FDA (U.S. Food and Drug
+            Administration) and CE (Conformité Européenne) marking in Europe.
           </li>
           <li>
-            Telehealth: Integration with telehealth platforms for remote patient
-            monitoring.
+            Quality Standards: Manufacturers must adhere to quality management
+            standards like ISO 13485 to ensure the safety and efficacy of their
+            devices.
           </li>
           <li>
-            Enhanced Data Analytics: Leveraging big data and AI for improved
-            health insights.
+            Post-Market Surveillance: Continuous monitoring and reporting of
+            device performance and safety post-market are essential to maintain
+            compliance.
           </li>
         </ul>
       </section>
-      </div>
 
-      <div className="pl-80">
-      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-pink-700">
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-purple-700">
         <h2 className="text-3xl font-semibold mb-4 flex items-center">
-          <FaQuestion className="mr-3 text-red-600 animate-pulse" />
-          Frequently Asked Questions (FAQs)
+          <GiArchiveResearch className="mr-3 text-pink-400 animate-pulse" />
+          Innovation and Research
+        </h2>
+        <p className="leading-relaxed">
+          Continuous research and innovation are driving the development of
+          next-generation pulse oximeters with enhanced features such as
+          multi-parameter monitoring, improved accuracy, and integration with
+          telehealth platforms. Researchers are also exploring novel
+          technologies, such as wearable and non-contact sensors, to expand the
+          usability and convenience of pulse oximetry.
+        </p>
+      </section>
+
+      <section className="mb-12 p-8 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 rounded-xl shadow-lg transform transition duration-500 hover:scale-105 border-4 border-indigo-700">
+        <h2 className="text-3xl font-semibold mb-4 flex items-center">
+          <FaQuestion className="mr-3 text-indigo-500 animate-pulse" />
+          FAQs
         </h2>
         <ul className="list-disc ml-6 space-y-2">
           <li>
-            How does an oximeter work?
-            <p>
-              An oximeter works by passing light through a part of the body,
-              usually the fingertip or earlobe, and measuring the amount of
-              light absorbed by oxygenated and deoxygenated blood.
-            </p>
+            <strong>Q: How accurate are pulse oximeters?</strong>
+            <br />
+            <span>
+              A: Pulse oximeters are generally accurate within a 2% margin for
+              SpO2 levels between 70% and 100%. Factors such as poor circulation,
+              skin pigmentation, and movement can affect accuracy.
+            </span>
           </li>
           <li>
-            Is it safe to use an oximeter at home?
-            <p>
-              Yes, it is safe to use an oximeter at home. However, it is
-              important to follow the manufacturer's instructions and consult a
-              healthcare provider if you have any concerns.
-            </p>
+            <strong>Q: Can I use a pulse oximeter at home?</strong>
+            <br />
+            <span>
+              A: Yes, many pulse oximeters are designed for home use and are
+              easy to operate. They provide valuable information for individuals
+              managing chronic health conditions or those interested in
+              monitoring their fitness levels.
+            </span>
           </li>
           <li>
-            How accurate are oximeter readings?
-            <p>
-              Oximeter readings are generally accurate within ±2% for SpO2
-              levels between 70-100%. Accuracy may vary with factors like
-              movement, poor circulation, and nail polish.
-            </p>
+            <strong>Q: Do I need a prescription to buy a pulse oximeter?</strong>
+            <br />
+            <span>
+              A: No, pulse oximeters are available over-the-counter and can be
+              purchased without a prescription.
+            </span>
+          </li>
+          <li>
+            <strong>Q: How do I interpret the readings on a pulse oximeter?</strong>
+            <br />
+            <span>
+              A: Normal SpO2 levels typically range from 95% to 100%. Readings
+              below 90% may indicate hypoxemia, and you should seek medical
+              advice if you consistently get low readings.
+            </span>
           </li>
         </ul>
       </section>
-      </div>
     </div>
   );
-};
+}
 
 export default OximeterInfo;

@@ -13,6 +13,19 @@ import AgriculturePage from './pages/Agriculture'
 import SmartCitiesPage from './pages/SmartCities'
 import SmartHomesPage from './pages/SmartHomes'
 import BlogForm from './pages/Blog'
+import FitnessTrackerInfo from './pages/FitnessTracker'
+import ECGMonitorInfo from './pages/EcgMonitoring'
+import SmartPillInfo from './pages/SmartPills'
+import SmartInhalerInfo from './pages/Smartinhaller'
+import GlucoseMonitorInfo from './pages/GlucoseMonitor'
+import AdaptiveLightingInfo from './pages/AdaptiveLighting'
+import BlogPost from './pages/Smartlock'
+import AboutUs from './pages/AboutUs'
+import BlogPost1 from './pages/Blog2'
+import BlogPost2 from './pages/Blog3'
+import BlogPost3 from './pages/Blog4'
+// import AutomatedLightingInfo from './pages/AutomatedLight'
+// import SoilMoistureSensorInfo from './pages/Soilmoisture'
 // import Blog from './pages/Blog'
 
 const router = createBrowserRouter(createRoutesFromElements (
@@ -26,7 +39,22 @@ const router = createBrowserRouter(createRoutesFromElements (
   <Route path='agriculture' element={<AgriculturePage />} />
   <Route path='smartcities' element={<SmartCitiesPage />} />
   <Route path='smarthomes' element={<SmartHomesPage />} />
-  <Route path='blogs' element={<BlogForm />} />
+  <Route path='Blog' element={<BlogForm />} />
+  <Route path='/FitnessTracker' element={<FitnessTrackerInfo />} />
+  <Route path='/ecg' element={<ECGMonitorInfo />} />
+  <Route path='/smartpill' element={<SmartPillInfo/>} />
+  <Route path='/smartinhaler' element={<SmartInhalerInfo/>} />
+  <Route path='/glucosemonitor' element={<GlucoseMonitorInfo/>} />
+  <Route path='/adaptivelighting' element={<AdaptiveLightingInfo/>} />
+  <Route path='/exa' element={<BlogPost/>} />
+  <Route path='/exb' element={<BlogPost1/>} />
+  <Route path='/exc' element={<BlogPost2/>} />
+  <Route path='/exd' element={<BlogPost3/>} />
+  <Route path='/aboutus' element={<AboutUs/>} />
+  {/* <Route path='/automatedlighting' element={<AutomatedLightingInfo/>} /> */}
+  
+
+  {/* <Route path='/soilmoisture' element={<SoilMoistureSensorInfo />} /> */}
 
   </>
 ))
